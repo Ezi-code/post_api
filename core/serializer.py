@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Post
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -12,7 +14,7 @@ class PostSerializer(serializers.ModelSerializer):
    
     def validate(self, data):
         if Post.objects.filter(title=data['title']).exists():
-            raise serializers.ValidationErro('Post already exists')
+            raise serializers.ValidationError('Post already exists')
         return data
     
 
@@ -35,3 +37,8 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+    
+    def login(self, validated_data):
+        user = authenticate(username=validated_data['username'], password = validated_data['password'])
+        token, _ =Token.objects.get_or_create(user=user)
+        return validated_data
