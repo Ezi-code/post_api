@@ -1,6 +1,8 @@
 from django.urls import path, include
 from core.views import *
 
+app_name = 'api'
+
 urlpatterns = [
     path('posts', ViewPostsView.as_view(), name='all-post'), 
     path('add-posts', CreatePostView.as_view(), name='view-post'), 
@@ -12,6 +14,6 @@ urlpatterns = [
     path('update-user/<int:pk>', UpdateUserView.as_view(), name='create-user'),
     path('get-user/<int:pk>', ViewUserAPI.as_view(), name='create-user'),
     path('view-users', ViewAllUsers.as_view(), name="view_users"),
-    path('login', LoginUser.as_view())
+    # path('login', LoginUser.as_view())
 ]
 

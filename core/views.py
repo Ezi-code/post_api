@@ -8,6 +8,7 @@ from rest_framework.permissions import IsAuthenticated, DjangoObjectPermissions,
 from rest_framework import generics, request
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth import authenticate
+from accounts.models import User
 
 # VIEWSETS FOR POST MODLE 
 
@@ -61,8 +62,8 @@ class DeletePostView(generics.DestroyAPIView):
 class CreatePostView(generics.CreateAPIView):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
 
 
 
@@ -72,7 +73,7 @@ class CreatePostView(generics.CreateAPIView):
 class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    authentication_classes = [TokenAuthentication]
+    # authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]  # [DjangoModelPermissionsOrAnonReadOnly]
 
 # Update a user account
