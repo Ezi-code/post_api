@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from accounts.models import User
+from accounts.models import UserModel
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ("username", "email", "password",)
+        model = UserModel
+        fields = ("id", "username", "email", "password",)
 
     def create(self, validated_data):
         # User.set_password=validated_data["password"]

@@ -5,10 +5,10 @@ from .models import Post
 from .serializer import PostSerializer, UserSerializer
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated, DjangoObjectPermissions, DjangoModelPermissionsOrAnonReadOnly
-from rest_framework import generics, request
+from rest_framework import generics, filters
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth import authenticate
-from accounts.models import User
+
 
 # VIEWSETS FOR POST MODLE 
 
@@ -66,47 +66,13 @@ class CreatePostView(generics.CreateAPIView):
     # permission_classes = [IsAuthenticated]
 
 
-
-# VIEWSETS FOR USER MODEL
-
-# Create a user account
-class CreateUserView(generics.CreateAPIView):
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
-    # authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]  # [DjangoModelPermissionsOrAnonReadOnly]
-
-# Update a user account
-class UpdateUserView(generics.UpdateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    lookup_field = 'pk'
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
-
-
-# View a single user account 
-class ViewUserAPI(generics.RetrieveAPIView):
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
-    lookup_field = 'pk'
-    authentication_classes = [TokenAuthentication]
-
-
-# Delete a user accounts 
-class DeleteUserView(generics.DestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+# search posts 
+class PostSearchView(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    authentication_classes = [IsAuthenticated]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['^title', '^description', '^author']
 
 
 
-# get all registered Users 
-class ViewAllUsers(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
-    

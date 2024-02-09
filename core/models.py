@@ -1,7 +1,6 @@
 from django.db import models
 from datetime import datetime
-from accounts.models import User
-
+from rest_api import settings
 
 
 class Post(models.Model):
@@ -16,7 +15,7 @@ class Post(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(default=datetime.now)
     status = models.BooleanField(choices=options, default=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
     def __str__(self):

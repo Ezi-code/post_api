@@ -1,5 +1,6 @@
 
 from pathlib import Path
+import accounts
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +16,7 @@ SECRET_KEY = 'django-insecure-c5%-%lhaf@)2zu_t$50#t1s+!04gwp#wxs&xiz1bnzfs3@_rz$
 DEBUG = True
 
 ALLOWED_HOSTS = []
-AUTH_USER_MODEL = 'accounts.user'
+
 
 
 # Application definition
@@ -45,6 +46,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'rest_api.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -62,7 +64,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'rest_api.wsgi.application'
-# AUTH_USER_MODEL = 'accounts.User'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -74,15 +76,8 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default':{
-#         "ENGINE":"django.db.backends.mysql",
-#         "NAME":"muysql",
-#         "PASSWORD":"",
-#         "PORT":"3306"
-#     }
-# }
 
+AUTH_USER_MODEL = 'accounts.UserModel'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
