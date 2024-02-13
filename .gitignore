@@ -2,3 +2,5 @@
 ./core/__pycahche__/
 ./rest/__pycahche__/
 ./core/migrations/
+./.env/
+./db.sqlite3

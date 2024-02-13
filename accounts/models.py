@@ -8,18 +8,18 @@ from django.utils.translation import gettext as _
 
 # Create your models here.
 class UserManager(BaseUserManager):    
-    def create_user(self, username, password, **extra_fields):
-        if not username:
-            raise ValueError("Username field cannot be empty")
+    def create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError("email field cannot be empty")
         if not password:
             raise ValueError("Password field cannot be empty")
         
-        user = self.model(username=username, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         return user
     
 
-    def create_superuser(self, username, password, **extra_fields):
+    def create_superuser(self, email, password, **extra_fields):
         """
         Create and save a SuperUser with the given email and password.
         """
@@ -31,7 +31,7 @@ class UserManager(BaseUserManager):
             raise ValueError(_("Superuser must have is_staff=True."))
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(_("Superuser must have is_superuser=True."))
-        return self.create_user(username, password, **extra_fields)
+        return self.create_user(email, password, **extra_fields)
             
 
 class UserModel(AbstractUser):
@@ -53,7 +53,7 @@ class UserModel(AbstractUser):
     # manager = UserManager
 
 
-    # USERNAME_FIELD = "email"
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     def __str__(self):
