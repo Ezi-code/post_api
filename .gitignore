@@ -1,6 +1,60 @@
-./api/__pycahche__ /
-./core/__pycahche__/
-./rest/__pycahche__/
-./core/migrations/
-./.env/
-./db.sqlite3
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.venv/
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+*.sqlite3-journal
+
+# Django migrations
+*/migrations/*
+
+# If you are using Django Debug Toolbar
+debug_toolbar/
+
+# Media files
+media/
+
+# Static files
+staticfiles/
+static/
+
+# Local environment variables
+.env
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
